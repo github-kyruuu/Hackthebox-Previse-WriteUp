@@ -18,3 +18,4 @@ Setelah saya buka ternyata web tersebut berisi login page
 ---
 Setelah itu saya melakukan brute force attack pada web menggunakan tool Bernama dirb nutuk mengetahui apakah terdapat url lain yang dapat dibuka secara langsung tanpa autentikasi
 
+
