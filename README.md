@@ -8,16 +8,21 @@ Sebelum saya memulai laporan saya saya akan pemperkenalkan kepada anda apa itu p
 ### Scanning Port
 ---
 Di sini saya menggunakan **nmap** untuk scan port yang terbuka untuk public 
+
 ![nmap](assets/nmap.png)
+
 setelah melakukan scan port diketahui bahwa terdapat 2 port yang terbuka untuk public, yaitu port 80 dan 22. Port 80 umumnya berfungsi untuk web site dengan http:// dan port 22 berfungsi untuk ssh server.
 
 Setelah saya buka ternyata web tersebut berisi login page
+
 ![login page](assets/login.png)
 
 ### Bruteforce directory
 ---
 Setelah itu saya melakukan brute force attack pada web menggunakan tool Bernama **dirb** untuk mengetahui apakah terdapat url lain yang dapat dibuka secara langsung tanpa autentikasi
+
 ![bruteforce](assets/bruteforce.png)
+
 Dan saya tidak bisa mendapat apa apa kerena langsung ke direct ke login page, namun saya dapat mengetahui direktori yang ada setelah melewati login page.
 
 ### SQL Injection
@@ -31,8 +36,11 @@ Lalu saya mencoba lagi menggunakan sql injection sederhana (sapa tau bisa yakan 
 ### Burp Suite
 ---
 Saya menghidupkan proxy server dan menggunakan burpsuite dan mengaktifkan mode instercept
+
 ![burp](assets/burp1.png)
+
 Lalu saya kirim ke repeater dan mengganti request seperti yang ada di gambar dan akun telah terbuat XD
+
 ![burp](assets/burp2.png)
 
 ### Eksekusi
