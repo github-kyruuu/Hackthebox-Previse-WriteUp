@@ -16,6 +16,18 @@ Setelah saya buka ternyata web tersebut berisi login page
 
 ### Bruteforce directory
 ---
-Setelah itu saya melakukan brute force attack pada web menggunakan tool Bernama dirb nutuk mengetahui apakah terdapat url lain yang dapat dibuka secara langsung tanpa autentikasi
+Setelah itu saya melakukan brute force attack pada web menggunakan tool Bernama **dirb** untuk mengetahui apakah terdapat url lain yang dapat dibuka secara langsung tanpa autentikasi
+![bruteforce](assets/bruteforce.png)
+Dan saya tidak bisa mendapat apa apa kerena langsung ke direct ke login page, namun saya dapat mengetahui direktori yang ada setelah melewati login page.
 
+### SQL Injection
+---
+Lalu saya mencoba lagi menggunakan sql injection sederhana (sapa tau bisa yakan :v)
 
+![sql injection](assets/sql.png)
+
+**BOOOM!** ndak bisa bro, cari jalan lain :')
+
+### Burp Suite
+---
+Menggunakan aplkasi ini saya bisa
